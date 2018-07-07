@@ -14,25 +14,28 @@
 			<% end %>
 		</div>
 
-		<div >
+		<div>
 			<ul class="posts-list">
 				<% @posts.reverse.each do |post| %>
 				<li>
 					<div>
-
-						<p><%= post.content %></p>
-						<p><%= post.user.email %></p>
+						 <p class="paragh-style"><%= post.user.email %></p>
+						<p class="content-style"><%= post.content %>
+							<br>
+						
 						<% if user_signed_in? && post.user_id ==  current_user.id %>
-						<p><%= link_to "Delete", destroy_post_path(post.id), method: :delete %></p>
+						<%= link_to "Delete", destroy_post_path(post.id), method: :delete %>
 						<% end %>
 
 						<% if user_signed_in? %>
-						<p>
-							<sub>
-								<%= post.likes.length %>
-								&nbsp
+						&nbsp
+						
+							
+								
+								
 								<%= link_to post.like_status_string(current_user.id), toggle_like_path(post.id), method: :post %>
-							</sub>
+								<sub><%= post.likes.length %></sub>
+							
 						</p>
 						<% else %>
 						<sub>
@@ -53,12 +56,14 @@
 
 								<%= f.submit %>
 							<% end %>
+							<% else %>
+							<p> Comments are--- </p>
 							<% end %>
 
 							<ul>
 								<% post.comments.reverse.each do |comment| %>
 								<li>
-									<p><%= comment.content %><br>
+									<p id = "second_paragh-style"><%= comment.content %><br>
 										<sub><%= comment.user.email %></sub>
 									</p>
 									<% if user_signed_in? && comment.user_id ==  current_user.id %>
