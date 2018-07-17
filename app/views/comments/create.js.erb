@@ -1,0 +1,7 @@
+console.log('yes');
+
+var abc = $('#post-comment-list-<%= @comment.post_id %>');
+
+var newcomment = ("<%= escape_javascript render 'comments/comment', comment: @comment %>");
+
+abc.prepend(newcomment);

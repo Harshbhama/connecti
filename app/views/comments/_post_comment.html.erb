@@ -1,0 +1,19 @@
+<% if user_signed_in? %>
+	<%= form_for @comment, remote:true do |f| %>
+		<%= f.hidden_field :post_id, value: post.id %>
+
+		<%= f.label :content %>
+		<%= f.text_area :content %>
+
+		<%= f.submit %>
+	<% end %>
+	<% else %>
+	<p> Comments are--- </p>
+	<% end %>
+
+	<ul id = "post-comment-list-<%= post.id %>">
+		<% post.comments.reverse.each do |comment| %>
+		<%= render 'comments/comment', comment: comment %>
+		<% end %>
+	</ul>
+

@@ -15,17 +15,23 @@ class PostsController < ApplicationController
   end
 
   def create
+    # silly mistake!
+    # we need to pass the @post to the views
+  	@post = Post.create(content: params[:post][:content], user_id: current_user.id)
 
-  	post = Post.create(content: params[:post][:content], user_id: current_user.id)
-
-  	redirect_to action: "home"
+    # we also need to pass the empty comment so that we can create a form for it
+    @comment = Comment.new
+  	# redirect_to action: "home"
 
   end
 
   def destroy
-	@post.destroy
 
-  	redirect_to action: "home"
+  @post_id = @post.id
+	@post.destroy
+  
+
+  	# redirect_to action: "home"
   end
 
 
