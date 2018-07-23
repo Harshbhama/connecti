@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   def create
     # silly mistake!
     # we need to pass the @post to the views
-  	@post = Post.create(content: params[:post][:content], user_id: current_user.id)
+  	@post = Post.create(content: params[:post][:content],image: params[:post][:image], user_id: current_user.id)
 
     # we also need to pass the empty comment so that we can create a form for it
     @comment = Comment.new

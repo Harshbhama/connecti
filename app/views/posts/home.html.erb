@@ -5,9 +5,14 @@
 	<div class="deewar-posts">
 		<div class="new-post-form">
 			<% if user_signed_in? %>
-			<%= form_for @post, remote:true do |f| %>
+			<%= form_for @post,html: { multipart: true }, remote:true do |f| %>
 				<%= f.label :content %>
 				<%= f.text_area :content %>
+
+				<br>
+
+				<%= f.label :image %>
+				<%= f.file_field :image %>
 
 				<%= f.submit %>
 			<% end %>
